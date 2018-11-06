@@ -8,6 +8,9 @@ import by.iba.boot_learning.service.AbstractService;
 import by.iba.boot_learning.service.user.UserService;
 import by.iba.boot_learning.validator.AbstractValidator;
 import by.iba.boot_learning.validator.date.DateValidator;
+import by.iba.boot_learning.validator.mail.EmailValidator;
+import by.iba.boot_learning.validator.name.NameValidator;
+import jdk.nashorn.internal.runtime.regexp.joni.Regex;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +29,11 @@ public class UserServiceImpl implements UserService, AbstractService<User> {
     public void insert(User user) {
         String currentDay = DateHandler.getCurrentDay();
         DateValidator.isValid(user.getDateOfBirth());
-        AbstractValidator.isValidByRegEx(user.getEmail(), RegExs.MAIL_VALIDATOR_REG_EX);
-        AbstractValidator.isValidByRegEx(user.getName(), RegExs.NAME_VALIDATOR_REG_EX);
-        AbstractValidator.isValidByRegEx(user.getCityOfBirth(), RegExs.NAME_VALIDATOR_REG_EX);
+        NameValidator nameValidator = new NameValidator();
+        EmailValidator emailValidator = new EmailValidator();
+        nameValidator.isValidNameByRegEx(user.getName(), RegExs.MAIL_VALIDATOR_REG_EX);
+        nameValidator.isValidNameByRegEx(user.getCityOfBirth(), RegExs.NAME_VALIDATOR_REG_EX);
+        emailValidator.isValidEmailByRegEx(user.getEmail(), RegExs.MAIL_VALIDATOR_REG_EX);
         user.setDateOfRegistration(currentDay);
         userDao.insert(user);
     }

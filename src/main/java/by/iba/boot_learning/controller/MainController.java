@@ -19,13 +19,13 @@ import java.util.List;
 public class MainController {
 
     @Autowired
-    UserServiceImpl userService;
+    private UserServiceImpl userService;
 
     @Autowired
-    BookServiceImpl bookService;
+    private BookServiceImpl bookService;
 
     @Autowired
-    CommentServiceImpl commentService;
+    private CommentServiceImpl commentService;
 
     @RequestMapping("/user")
     @ResponseBody
@@ -48,8 +48,7 @@ public class MainController {
     @RequestMapping("/comment/get")
     @ResponseBody
     public List<Comment> getComment(@RequestParam(value = "author") String authorName) {
-        List<Comment> comment = commentService.findByAuthorName(authorName);
-        return comment;
+        return commentService.findByAuthorName(authorName);
     }
 
     @RequestMapping("/comment/getAllComments")
@@ -58,10 +57,10 @@ public class MainController {
         return commentService.findAll();
     }
 
-    @RequestMapping("/book")
+    @RequestMapping("/book/get")
     @ResponseBody
-    public void book(@RequestBody Book book) {
-        bookService.insert(book);
+    public Book getBook(@RequestParam(value = "bookId") long id) {
+        return bookService.findObjectById(id);
     }
 
     @RequestMapping("/book/getAllBooks")

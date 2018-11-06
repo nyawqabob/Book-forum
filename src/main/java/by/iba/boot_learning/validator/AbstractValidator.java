@@ -9,18 +9,20 @@ import java.util.regex.Pattern;
 @Component
 public class AbstractValidator {
 
-    public static void isValidByLength(String data, Integer minLength, Integer maxLength) {
+    protected String FIELD_TYPE;
+
+    protected void isValidByLength(String data, int minLength, int maxLength, String fieldType) {
         if (data.length() > maxLength || data.length() < minLength) {
-            throw new NotValidDataException("Wrong length of " + data);
+            throw new NotValidDataException("Wrong length of "+fieldType+". Your value: " + data);
         }
 
     }
 
-    public static void isValidByRegEx(String data, String regEx) {
+    protected void isValidByRegEx(String data, String regEx, String fieldType) {
         Pattern pattern = Pattern.compile(regEx, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(data);
         if (!matcher.find()) {
-            throw new NotValidDataException("Wrong form of " + data);
+            throw new NotValidDataException("Wrong form of "+fieldType+". Your value: " + data);
         }
 
     }

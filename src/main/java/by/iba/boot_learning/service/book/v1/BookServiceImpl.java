@@ -6,6 +6,7 @@ import by.iba.boot_learning.entity.book.Book;
 import by.iba.boot_learning.service.AbstractService;
 import by.iba.boot_learning.service.book.BookService;
 import by.iba.boot_learning.validator.AbstractValidator;
+import by.iba.boot_learning.validator.name.NameValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +20,13 @@ public class BookServiceImpl implements BookService, AbstractService<Book> {
 
     public static final Logger LOGGER = LogManager.getLogger(BookServiceImpl.class);
     @Autowired
-    BookDaoImpl bookDao;
+    private BookDaoImpl bookDao;
 
     @Override
     public void insert(Book book) {
-        AbstractValidator.isValidByRegEx(book.getEditionName(), RegExs.NAME_VALIDATOR_REG_EX);
-        AbstractValidator.isValidByRegEx(book.getName(), RegExs.NAME_VALIDATOR_REG_EX);
+        NameValidator nameValidator = new NameValidator();
+        nameValidator.isValidNameByRegEx(book.getEditionName(), RegExs.NAME_VALIDATOR_REG_EX);
+        nameValidator.isValidNameByRegEx(book.getName(), RegExs.NAME_VALIDATOR_REG_EX);
         bookDao.insert(book);
 
     }
@@ -42,7 +44,7 @@ public class BookServiceImpl implements BookService, AbstractService<Book> {
 
     @Override
     public int getAmountOfAllObjects() {
-            return bookDao.getAmountOfAllObjects();
+        return bookDao.getAmountOfAllObjects();
 
     }
 }
