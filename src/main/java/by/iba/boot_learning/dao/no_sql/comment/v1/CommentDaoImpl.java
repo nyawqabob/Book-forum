@@ -1,7 +1,6 @@
 package by.iba.boot_learning.dao.no_sql.comment.v1;
 
 
-import by.iba.boot_learning.dao.exception.DaoException;
 import by.iba.boot_learning.dao.no_sql.comment.CommentDao;
 import by.iba.boot_learning.entity.comment.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +15,11 @@ import java.util.List;
 public class CommentDaoImpl implements CommentDao {
 
     @Autowired
-    MongoOperations mongoOperations;
+    private MongoOperations mongoOperations;
 
     @Override
     public List<Comment> findByAuthorName(String authorName) {
-       List<Comment> comments = mongoOperations.find(Query.query(Criteria.where("author_name").is(authorName)), Comment.class);
-       if(comments.isEmpty()){
-           throw new DaoException("Comments of author "+authorName+" was not found. ");
-       }
-       return comments;
+       return mongoOperations.find(Query.query(Criteria.where("author_name").is(authorName)), Comment.class);
     }
 
     @Override

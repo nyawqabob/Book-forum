@@ -11,6 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
@@ -24,7 +25,7 @@ import java.util.Map;
 @Repository
 public class UserDaoImpl extends JdbcDaoSupport implements UserDao, AbstractDao<User> {
 
-    public static final Logger LOGGER = LogManager.getLogger(UserDaoImpl.class);
+    private static final Logger LOGGER = LogManager.getLogger(UserDaoImpl.class);
 
     @Autowired
     private DataSource dataSource;
@@ -84,9 +85,10 @@ public class UserDaoImpl extends JdbcDaoSupport implements UserDao, AbstractDao<
         try {
             String select_user_by_id_sql = UserQueries.SQL_SELECT_USER_BY_ID;
             user = (User) getJdbcTemplate().queryForObject(select_user_by_id_sql, new Object[]{id}, new BeanPropertyRowMapper(User.class));
-            if (user == null) {
-                throw new DaoException("User with " + id + " was not found. ");
-            }
+
+        } catch (EmptyResultDataAccessException ex) {
+            LOGGER.error("User with id" + id + " was not found: " + ex.getMessage());
+            throw new DaoException("User with " + id + " was not found. ", ex);
         } catch (DataAccessException ex) {
             LOGGER.error("User with id" + id + " was not found: " + ex.getMessage());
             throw new DaoException("Cannot load user with id " + id + " because of database error. Try again later. ", ex);
@@ -111,9 +113,9 @@ public class UserDaoImpl extends JdbcDaoSupport implements UserDao, AbstractDao<
         try {
             String sql_select_user_by_email = UserQueries.SQL_SELECT_USER_BY_EMAIL;
             user = (User) getJdbcTemplate().queryForObject(sql_select_user_by_email, new Object[]{email}, new BeanPropertyRowMapper(User.class));
-            if (user == null) {
-                throw new DaoException("User with email " + email + " was not found. ");
-            }
+        } catch (EmptyResultDataAccessException ex) {
+            LOGGER.error("User with email" + email + " was not found: " + ex.getMessage());
+            throw new DaoException("User with email " + email + " was not found. ", ex);
         } catch (DataAccessException ex) {
             LOGGER.error("User with email" + email + " was not found: " + ex.getMessage());
             throw new DaoException("Cannot load user with email " + email + " because of database error. Try again later. ", ex);

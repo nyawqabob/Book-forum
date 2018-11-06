@@ -33,10 +33,17 @@ public class MainController {
         userService.insert(user);
     }
 
+
     @RequestMapping("/user/get")
     @ResponseBody
     public User getUser(@RequestParam(value = "userId") long id) {
         return userService.findObjectById(id);
+    }
+
+    @RequestMapping("/user/getAllUsers")
+    @ResponseBody
+    public List<User> getUsers() {
+        return userService.loadAllObjects();
     }
 
     @RequestMapping("/comment")
@@ -55,6 +62,12 @@ public class MainController {
     @ResponseBody
     public List<Comment> getComments() {
         return commentService.findAll();
+    }
+
+    @RequestMapping("/book")
+    @ResponseBody
+    public void book(@RequestBody Book book) {
+        bookService.insert(book);
     }
 
     @RequestMapping("/book/get")

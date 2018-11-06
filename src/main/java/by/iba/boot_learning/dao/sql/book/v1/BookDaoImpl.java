@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
@@ -26,7 +27,7 @@ import java.util.Map;
 @Repository
 public class BookDaoImpl extends JdbcDaoSupport implements BookDao, AbstractDao<Book> {
 
-    public static final Logger LOGGER = LogManager.getLogger(BookDaoImpl.class);
+    private static final Logger LOGGER = LogManager.getLogger(BookDaoImpl.class);
 
     @Autowired
     private DataSource dataSource;
@@ -44,7 +45,7 @@ public class BookDaoImpl extends JdbcDaoSupport implements BookDao, AbstractDao<
         try {
             boolean isExistUserWithSameEmail = getJdbcTemplate().queryForObject(exists_user_by_email_sql, new Object[]{book.getUserEmail()}, Boolean.class);
             if (!isExistUserWithSameEmail) {
-                throw new DaoException("User with email " + book.getUserEmail() + "doesn't exists. ");
+                throw new DaoException("User with email " + book.getUserEmail() + " doesn't exists. ");
             }
             getJdbcTemplate().update(insert_book_sql, new Object[]{book.getName(), book.getEditionName(), book.getYearOfEdition(), book.getBookType().toString(),
                     book.getPrice(), book.getDateWhenAdded(), book.getUserEmail()});
@@ -85,12 +86,13 @@ public class BookDaoImpl extends JdbcDaoSupport implements BookDao, AbstractDao<
         try {
             String select_book_by_id_sql = BookQueries.SQL_SELECT_BOOK_BY_ID;
             book = (Book) getJdbcTemplate().queryForObject(select_book_by_id_sql, new Object[]{id}, new BeanPropertyRowMapper(Book.class));
-            if (book == null) {
-                throw new DaoException("Book with id" + id + " was not found.");
-            }
+        } catch (EmptyResultDataAccessException ex) {
+            LOGGER.error("Book with id" + id + " was not found: " + ex.getMessage());
+            throw new DaoException("Book with id" + id + " was not found.");
         } catch (DataAccessException ex) {
             LOGGER.error("Book with id" + id + " was not found: " + ex.getMessage());
-            throw new DaoException("Cannot load book with id "+id+" because of database error. Try again later.", ex);
+            throw new DaoException("Cannot load book with id " + id + " because of database error. Try again later.", ex);
+
         }
         return book;
     }

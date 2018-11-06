@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 public class PropertiesHandler {
 
     public static String getProperty(String key, String bundleName) {
-        ResourceBundle resBundle = null;
+        ResourceBundle resBundle;
         try {
             resBundle = ResourceBundle.getBundle(bundleName);
         } catch (Exception ex) {

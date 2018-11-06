@@ -13,7 +13,6 @@ public class DateHandler {
         DateFormat dateFormat = new SimpleDateFormat(DateConstants.DATE_FORMAT);
         dateFormat.setTimeZone(TimeZone.getTimeZone(DateConstants.TIME_ZONE));
         Calendar calendar = Calendar.getInstance();
-        String stringDate = dateFormat.format(calendar.getTime());
-        return stringDate;
+        return dateFormat.format(calendar.getTime());
     }
 }

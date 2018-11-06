@@ -5,7 +5,6 @@ import by.iba.boot_learning.dao.sql.book.v1.BookDaoImpl;
 import by.iba.boot_learning.entity.book.Book;
 import by.iba.boot_learning.service.AbstractService;
 import by.iba.boot_learning.service.book.BookService;
-import by.iba.boot_learning.validator.AbstractValidator;
 import by.iba.boot_learning.validator.name.NameValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
