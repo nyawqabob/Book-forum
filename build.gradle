@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.0.6.RELEASE'
+    id "io.spring.dependency-management" version "1.0.6.RELEASE"
+
+}
+
+jar {
+    baseName = 'SpringBootLearning'
+    version = '0.0.1-SNAPSHOT'
+}
+
+sourceCompatibility = 1.8
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile group: 'email-validator', name: 'email-validator', version: '0.1'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
+    compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtime 'org.postgresql:postgresql:9.4-1206-jdbc42'
+    compile group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '2.0.6.RELEASE'
+    compile("org.springframework.boot:spring-boot-starter-web")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.1'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.1'
+}
