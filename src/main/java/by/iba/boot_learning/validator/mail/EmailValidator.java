@@ -11,7 +11,7 @@ public class EmailValidator extends AbstractValidator {
         isValidByRegEx(data, regEx, FIELD_TYPE);
     }
 
-    public void isValidEmailByLength(String data, int minLength, int maxLength, String fieldType) {
+    public void isValidEmailByLength(String data, int minLength, int maxLength) {
         isValidByLength(data, minLength, maxLength, FIELD_TYPE);
     }
 }

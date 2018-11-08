@@ -4,7 +4,7 @@ import by.iba.boot_learning.dao.exception.DaoException;
 
 import java.util.List;
 
-public interface AbstractDao<T> {
+public interface Dao<T> {
 
     void insert(T object) throws DaoException;
 
@@ -13,4 +13,6 @@ public interface AbstractDao<T> {
     T findObjectById(long id) throws DaoException;
 
     int getAmountOfAllObjects() throws DaoException;
+
+    void deleteObjectById(long id);
 }

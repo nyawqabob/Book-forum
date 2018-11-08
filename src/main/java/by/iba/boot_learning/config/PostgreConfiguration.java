@@ -12,7 +12,6 @@ import javax.sql.DataSource;
 public class PostgreConfiguration {
 
     @Bean
-    @Primary
     @ConfigurationProperties("spring.datasource")
     public DataSource dataSource() {
         return DataSourceBuilder.create().build();

@@ -4,7 +4,6 @@ import by.iba.boot_learning.entity.user.status.Status;
 
 public class User {
 
-
     private long id;
     private String name;
     private int age;

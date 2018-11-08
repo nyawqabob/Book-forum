@@ -1,6 +1,6 @@
 package by.iba.boot_learning.validator.date;
 
-import by.iba.boot_learning.constants.date.DateConstants;
+import by.iba.boot_learning.constants.ConstantHelper;
 import by.iba.boot_learning.validator.exception.NotValidDataException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,8 +13,8 @@ public class DateValidator {
     public static final Logger logger = LogManager.getLogger(DateValidator.class);
 
     public static void isValid(String date) throws NotValidDataException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(DateConstants.DATE_FORMAT);
-        dateFormat.setTimeZone(TimeZone.getTimeZone(DateConstants.TIME_ZONE));
+        SimpleDateFormat dateFormat = new SimpleDateFormat(ConstantHelper.DATE_FORMAT);
+        dateFormat.setTimeZone(TimeZone.getTimeZone(ConstantHelper.TIME_ZONE));
         try {
             dateFormat.parse(date);
         } catch (ParseException e) {
