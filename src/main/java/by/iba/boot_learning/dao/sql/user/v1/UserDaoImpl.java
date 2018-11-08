@@ -126,7 +126,7 @@ public class UserDaoImpl implements UserDao {
         User user;
         try {
             String sql_select_user_by_email = userQueries.getSqlSelectUserByEmail();
-            user = (User) jdbcTemplate.queryForObject(sql_select_user_by_email, new Object[]{email}, new BeanPropertyRowMapper(User.class));
+            user = jdbcTemplate.queryForObject(sql_select_user_by_email, new Object[]{email}, userMapper);
         } catch (EmptyResultDataAccessException ex) {
             LOGGER.error("User with email" + email + " was not found: " + ex.getMessage());
             throw new DaoException("User with email " + email + " was not found. ", ex);

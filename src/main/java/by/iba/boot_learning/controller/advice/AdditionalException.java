@@ -1,6 +1,6 @@
 package by.iba.boot_learning.controller.advice;
 
-class AdditionalException {
+public class AdditionalException {
 
     private String message;
 

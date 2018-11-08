@@ -21,7 +21,7 @@ public class MongoConfiguration {
     @Value("${spring.data.mongodb.database}")
     private String database;
 
-    public MongoDbFactory mongoDbFactory() throws Exception {
+    private MongoDbFactory mongoDbFactory() {
         MongoClient mongoClient = new MongoClient(new ServerAddress(host, port));
         return new SimpleMongoDbFactory(mongoClient, database);
     }

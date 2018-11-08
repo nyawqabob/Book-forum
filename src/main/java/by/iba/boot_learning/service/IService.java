@@ -2,7 +2,7 @@ package by.iba.boot_learning.service;
 
 import java.util.List;
 
-public interface Service<T> {
+public interface IService<T> {
 
     void insert(T object);
 

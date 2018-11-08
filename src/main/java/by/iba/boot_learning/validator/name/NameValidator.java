@@ -1,18 +1,12 @@
 package by.iba.boot_learning.validator.name;
 
 import by.iba.boot_learning.validator.AbstractValidator;
+import org.springframework.stereotype.Component;
 
+@Component
 public class NameValidator extends AbstractValidator {
-    {
-        FIELD_TYPE = "name";
-    }
 
-    public void isValidNameByRegEx(String data, String regEx) {
-        isValidByRegEx(data, regEx, FIELD_TYPE);
+    public NameValidator() {
+        super("name");
     }
-
-    public void isValidNameByLength(String data, int minLength, int maxLength) {
-        isValidByLength(data, minLength, maxLength, FIELD_TYPE);
-    }
-
 }

@@ -1,10 +1,14 @@
 package by.iba.boot_learning.entity.book;
 
 import by.iba.boot_learning.entity.book.type.BookType;
+import by.iba.boot_learning.entity.user.User;
 
+import javax.persistence.*;
 
+@Entity
 public class Book {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
     private String name;
     private String editionName;
@@ -12,7 +16,11 @@ public class Book {
     private BookType bookType;
     private int price;
     private String dateWhenAdded;
+    @Column(name="email", insertable = false, updatable = false)
     private String userEmail;
+    @ManyToOne
+    @JoinColumn(name="email")
+    private User user;
 
     public Book() {
     }

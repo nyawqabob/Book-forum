@@ -10,7 +10,7 @@ import javax.sql.DataSource;
 @Configuration
 public class JdbcTemplateConfiguration {
     @Autowired
-    DataSource dataSource;
+    private DataSource dataSource;
 
     @Bean
     public JdbcTemplate configJdbcTemplate() {

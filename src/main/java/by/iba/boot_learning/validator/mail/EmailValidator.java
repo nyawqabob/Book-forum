@@ -1,18 +1,13 @@
 package by.iba.boot_learning.validator.mail;
 
 import by.iba.boot_learning.validator.AbstractValidator;
+import org.springframework.stereotype.Component;
 
+@Component
 public class EmailValidator extends AbstractValidator {
-    {
-        FIELD_TYPE = "email";
-    }
 
-    public void isValidEmailByRegEx(String data, String regEx) {
-        isValidByRegEx(data, regEx, FIELD_TYPE);
-    }
-
-    public void isValidEmailByLength(String data, int minLength, int maxLength) {
-        isValidByLength(data, minLength, maxLength, FIELD_TYPE);
+    public EmailValidator() {
+        super("email");
     }
 }
 

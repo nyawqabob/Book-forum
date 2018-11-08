@@ -1,17 +1,26 @@
 package by.iba.boot_learning.entity.user;
 
+import by.iba.boot_learning.entity.book.Book;
 import by.iba.boot_learning.entity.user.status.Status;
 
-public class User {
+import javax.persistence.*;
+import java.util.List;
 
+@Entity
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
     private String name;
     private int age;
+    @Column(name="email")
     private String email;
     private String cityOfBirth;
     private String dateOfBirth;
     private String dateOfRegistration;
     private Status status;
+    @OneToMany
+    private List<Book> books;
 
     public User() {
     }

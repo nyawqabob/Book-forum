@@ -3,9 +3,9 @@ package by.iba.boot_learning.controller;
 import by.iba.boot_learning.entity.book.Book;
 import by.iba.boot_learning.entity.comment.Comment;
 import by.iba.boot_learning.entity.user.User;
-import by.iba.boot_learning.service.book.v1.BookServiceImpl;
+import by.iba.boot_learning.service.book.v1.BookIServiceImpl;
 import by.iba.boot_learning.service.system.v1.CommentServiceImpl;
-import by.iba.boot_learning.service.user.v1.UserServiceImpl;
+import by.iba.boot_learning.service.user.v1.UserIServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,10 +19,10 @@ import java.util.List;
 public class MainController {
 
     @Autowired
-    private UserServiceImpl userService;
+    private UserIServiceImpl userService;
 
     @Autowired
-    private BookServiceImpl bookService;
+    private BookIServiceImpl bookService;
 
     @Autowired
     private CommentServiceImpl commentService;
