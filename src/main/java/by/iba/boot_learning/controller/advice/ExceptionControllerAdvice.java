@@ -1,8 +1,8 @@
 package by.iba.boot_learning.controller.advice;
 
-import by.iba.boot_learning.dao.exception.DaoException;
+import by.iba.boot_learning.exceptions.DaoException;
 import by.iba.boot_learning.properties.exception.PropertyException;
-import by.iba.boot_learning.validator.exception.NotValidDataException;
+import by.iba.boot_learning.exceptions.NotValidDataException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

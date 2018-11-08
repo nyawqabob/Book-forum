@@ -1,4 +1,4 @@
-package by.iba.boot_learning.validator.exception;
+package by.iba.boot_learning.exceptions;
 
 public class NotValidDataException extends RuntimeException {
     public NotValidDataException(String message) {

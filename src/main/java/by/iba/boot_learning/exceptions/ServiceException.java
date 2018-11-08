@@ -1,4 +1,4 @@
-package by.iba.boot_learning.service.exception;
+package by.iba.boot_learning.exceptions;
 
 public class ServiceException extends RuntimeException {
     public ServiceException(String message) {

@@ -1,6 +1,6 @@
 package by.iba.boot_learning.validator;
 
-import by.iba.boot_learning.validator.exception.NotValidDataException;
+import by.iba.boot_learning.exceptions.NotValidDataException;
 import org.springframework.stereotype.Component;
 
 import java.util.regex.Matcher;

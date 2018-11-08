@@ -1,4 +1,4 @@
-package by.iba.boot_learning.dao.exception;
+package by.iba.boot_learning.exceptions;
 
 public class DaoException extends RuntimeException {
     public DaoException(String message) {

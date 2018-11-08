@@ -1,6 +1,6 @@
 package by.iba.boot_learning.dao.sql;
 
-import by.iba.boot_learning.dao.exception.DaoException;
+import by.iba.boot_learning.exceptions.DaoException;
 
 import java.util.List;
 

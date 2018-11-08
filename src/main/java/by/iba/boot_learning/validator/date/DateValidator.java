@@ -1,7 +1,7 @@
 package by.iba.boot_learning.validator.date;
 
 import by.iba.boot_learning.constants.ConstantHelper;
-import by.iba.boot_learning.validator.exception.NotValidDataException;
+import by.iba.boot_learning.exceptions.NotValidDataException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
