@@ -1,10 +1,12 @@
-package by.iba.boot_learning.service;
+package by.iba.boot_learning.service.sql;
+
+import by.iba.boot_learning.entity.InsertResult;
 
 import java.util.List;
 
 public interface IService<T> {
 
-    void insert(T object);
+    InsertResult insert(T object);
 
     List<T> loadAllObjects();
 

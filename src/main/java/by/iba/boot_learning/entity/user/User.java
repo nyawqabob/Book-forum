@@ -15,6 +15,9 @@ public class User {
     private int age;
     @Column(name="email")
     private String email;
+    @Column
+    @ElementCollection(targetClass=String.class)
+    private List<String> roles;
     private String cityOfBirth;
     private String dateOfBirth;
     private String dateOfRegistration;
@@ -89,6 +92,21 @@ public class User {
         this.status = status;
     }
 
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
 
     @Override
     public String toString() {

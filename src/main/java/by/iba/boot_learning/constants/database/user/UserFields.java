@@ -9,6 +9,7 @@ import org.springframework.context.annotation.PropertySource;
 @ConfigurationProperties()
 public class UserFields {
 
+    private String books;
     private String age;
     private String cityOfBirth;
     private String status;

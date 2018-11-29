@@ -1,13 +1,11 @@
-package by.iba.boot_learning.service.book.v1;
+package by.iba.boot_learning.service.sql.book.v1;
 
 import by.iba.boot_learning.constants.ConstantHelper;
 import by.iba.boot_learning.dao.sql.book.v1.BookDaoImpl;
 import by.iba.boot_learning.date.DateHandler;
+import by.iba.boot_learning.entity.InsertResult;
 import by.iba.boot_learning.entity.book.Book;
-import by.iba.boot_learning.service.IService;
-import by.iba.boot_learning.service.book.BookService;
-import by.iba.boot_learning.validator.date.DateValidator;
-import by.iba.boot_learning.validator.mail.EmailValidator;
+import by.iba.boot_learning.service.sql.book.BookService;
 import by.iba.boot_learning.validator.name.NameValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,7 +16,7 @@ import java.util.List;
 
 
 @Service
-public class BookIServiceImpl implements BookService, IService<Book> {
+public class BookIServiceImpl implements BookService {
 
     private static final Logger LOGGER = LogManager.getLogger(BookIServiceImpl.class);
     @Autowired
@@ -28,12 +26,15 @@ public class BookIServiceImpl implements BookService, IService<Book> {
     private NameValidator nameValidator;
 
     @Override
-    public void insert(Book book) {
+    public InsertResult insert(Book book) {
+        InsertResult insertResult = new InsertResult("Book");
         String currentTime = DateHandler.getCurrentDay();
         nameValidator.isValidByRegEx(book.getEditionName(), ConstantHelper.NAME_VALIDATOR_REG_EX);
         nameValidator.isValidByRegEx(book.getName(), ConstantHelper.NAME_VALIDATOR_REG_EX);
         book.setDateWhenAdded(currentTime);
-        bookDao.insert(book);
+        boolean isAdded = bookDao.insert(book);
+        insertResult.defineMessage(isAdded);
+        return insertResult;
     }
 
     @Override

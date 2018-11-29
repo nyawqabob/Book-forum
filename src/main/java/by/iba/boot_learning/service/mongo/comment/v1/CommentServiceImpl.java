@@ -1,8 +1,8 @@
-package by.iba.boot_learning.service.system.v1;
+package by.iba.boot_learning.service.mongo.comment.v1;
 
 import by.iba.boot_learning.dao.no_sql.comment.v1.CommentDaoImpl;
 import by.iba.boot_learning.entity.comment.Comment;
-import by.iba.boot_learning.service.system.CommentService;
+import by.iba.boot_learning.service.mongo.comment.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

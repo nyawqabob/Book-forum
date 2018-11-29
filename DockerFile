@@ -1,0 +1,7 @@
+FROM openjdk:8
+VOLUME /tmp
+EXPOSE 8080
+ADD /build/libs/SpringBootLearning.jar SpringBootLearning.jar
+ENTRYPOINT ["java","-jar","SpringBootLearning.jar"]
+
+

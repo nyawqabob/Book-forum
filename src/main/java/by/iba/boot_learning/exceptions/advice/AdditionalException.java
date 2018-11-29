@@ -1,4 +1,4 @@
-package by.iba.boot_learning.controller.advice;
+package by.iba.boot_learning.exceptions.advice;
 
 public class AdditionalException {
 

@@ -1,4 +1,4 @@
-package by.iba.boot_learning.service.system;
+package by.iba.boot_learning.service.mongo.comment;
 
 import by.iba.boot_learning.entity.comment.Comment;
 import java.util.List;

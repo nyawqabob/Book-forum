@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface Dao<T> {
 
-    void insert(T object) throws DaoException;
+    boolean insert(T object) throws DaoException;
 
     List<T> loadAllObjects();
 

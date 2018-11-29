@@ -1,11 +1,11 @@
-package by.iba.boot_learning.service.user.v1;
+package by.iba.boot_learning.service.sql.user.v1;
 
 import by.iba.boot_learning.constants.ConstantHelper;
 import by.iba.boot_learning.dao.sql.user.v1.UserDaoImpl;
 import by.iba.boot_learning.date.DateHandler;
+import by.iba.boot_learning.entity.InsertResult;
 import by.iba.boot_learning.entity.user.User;
-import by.iba.boot_learning.service.IService;
-import by.iba.boot_learning.service.user.UserService;
+import by.iba.boot_learning.service.sql.user.UserService;
 import by.iba.boot_learning.validator.date.DateValidator;
 import by.iba.boot_learning.validator.mail.EmailValidator;
 import by.iba.boot_learning.validator.name.NameValidator;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserIServiceImpl implements UserService, IService<User> {
+public class UserIServiceImpl implements UserService {
     public static final Logger LOGGER = LogManager.getLogger(UserIServiceImpl.class);
 
     @Autowired
@@ -30,14 +30,17 @@ public class UserIServiceImpl implements UserService, IService<User> {
     private EmailValidator emailValidator;
 
     @Override
-    public void insert(User user) {
+    public InsertResult insert(User user) {
+        InsertResult insertResult = new InsertResult("User");
         String currentDay = DateHandler.getCurrentDay();
         DateValidator.isValid(user.getDateOfBirth());
         nameValidator.isValidByRegEx(user.getName(), ConstantHelper.NAME_VALIDATOR_REG_EX);
         nameValidator.isValidByRegEx(user.getCityOfBirth(), ConstantHelper.NAME_VALIDATOR_REG_EX);
         emailValidator.isValidByRegEx(user.getEmail(), ConstantHelper.MAIL_VALIDATOR_REG_EX);
         user.setDateOfRegistration(currentDay);
-        userDao.insert(user);
+        boolean isAdded = userDao.insert(user);
+        insertResult.defineMessage(isAdded);
+        return insertResult;
     }
 
     @Override

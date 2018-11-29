@@ -1,11 +1,12 @@
 package by.iba.boot_learning.controller;
 
+import by.iba.boot_learning.entity.InsertResult;
 import by.iba.boot_learning.entity.book.Book;
 import by.iba.boot_learning.entity.comment.Comment;
 import by.iba.boot_learning.entity.user.User;
-import by.iba.boot_learning.service.book.v1.BookIServiceImpl;
-import by.iba.boot_learning.service.system.v1.CommentServiceImpl;
-import by.iba.boot_learning.service.user.v1.UserIServiceImpl;
+import by.iba.boot_learning.service.sql.book.v1.BookIServiceImpl;
+import by.iba.boot_learning.service.mongo.comment.v1.CommentServiceImpl;
+import by.iba.boot_learning.service.sql.user.v1.UserIServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,10 +28,10 @@ public class MainController {
     @Autowired
     private CommentServiceImpl commentService;
 
-    @RequestMapping("/user")
+    @RequestMapping("/user/insert")
     @ResponseBody
-    public void user(@RequestBody User user) {
-        userService.insert(user);
+    public InsertResult user(@RequestBody User user) {
+        return userService.insert(user);
     }
 
 
@@ -64,10 +65,10 @@ public class MainController {
         return commentService.findAll();
     }
 
-    @RequestMapping("/book")
+    @RequestMapping("/book/insert")
     @ResponseBody
-    public void book(@RequestBody Book book) {
-        bookService.insert(book);
+    public InsertResult book(@RequestBody Book book) {
+        return bookService.insert(book);
     }
 
     @RequestMapping("/book/get")

@@ -13,6 +13,7 @@ public class BookQueries {
     private String sqlSelectBookById;
     private String sqlSelectAmountOfBooks;
     private String sqlDeleteBookById;
+    private String sqlSelectBooksByUserEmail;
 
     public String getSqlInsertBook() {
         return sqlInsertBook;
@@ -52,5 +53,14 @@ public class BookQueries {
 
     public void setSqlDeleteBookById(String sqlDeleteBookById) {
         this.sqlDeleteBookById = sqlDeleteBookById;
+    }
+
+
+    public String getSqlSelectBooksByUserEmail() {
+        return sqlSelectBooksByUserEmail;
+    }
+
+    public void setSqlSelectBooksByUserEmail(String sqlSelectBooksByUserEmail) {
+        this.sqlSelectBooksByUserEmail = sqlSelectBooksByUserEmail;
     }
 }
