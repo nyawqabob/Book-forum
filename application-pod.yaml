@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app-pod
+  labels:
+    app: app-pod-app
+spec:
+  containers:
+  - name: boot-app
+    image: govno
+    imagePullPolicy: IfNotPresent
+    ports:
+     - containerPort: 8080
